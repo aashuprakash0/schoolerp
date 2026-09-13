@@ -1,23 +1,16 @@
 import { createBrowserClient } from '@supabase/ssr';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+// Supabase public configuration
+// These values are safe to use in browser-side code.
+// NEVER put the service-role key here.
+
+const SUPABASE_URL = 'PASTE_YOUR_SUPABASE_PROJECT_URL_HERE';
+
+const SUPABASE_ANON_KEY = 'PASTE_YOUR_SUPABASE_ANON_KEY_HERE';
 
 export function supabaseBrowser() {
-  if (!supabaseUrl) {
-    throw new Error(
-      'NEXT_PUBLIC_SUPABASE_URL is missing from the Vercel build.'
-    );
-  }
-
-  if (!supabaseAnonKey) {
-    throw new Error(
-      'NEXT_PUBLIC_SUPABASE_ANON_KEY is missing from the Vercel build.'
-    );
-  }
-
   return createBrowserClient(
-    supabaseUrl,
-    supabaseAnonKey
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
   );
 }
